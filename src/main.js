@@ -1,5 +1,5 @@
 import { Game } from "phaser";
-import { MainScene } from "./opdracht2/MainScene";
+import { MainScene } from "./opdracht3/MainScene";
 
 // More information about config: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
