@@ -42,28 +42,13 @@ export class PipeHandler {
       pipe.setCollideWorldBounds(false);
       pipe.body.onWorldBounds = true;
       pipe.checkWorldBounds = true;
-
-        // Verwijder zodra het uit beeld is
-      pipe.body.world.on('worldbounds', (body) => {
-        console.log('left the world: ', body);
-        if (body.gameObject === pipe) {
-              console.log('will remove pipe from group', pipe, this.pipes);
-              /* pipe.setActive(false);
-                pipe.setVisible(false); */
-                this.pipes.remove(pipe);
-
-            }
-      });
     }
 
     killInvisiblePipes() {
-      this.pipes.children.iterate( (pipe: Phaser.GameObjects.GameObject) => {
-        console.log('pipe is of type', typeof pipe);
-        if (pipe.active && pipe.body && pipe.body?.position.x + 50 < 0) {
-          console.log('pipe left the world: ', pipe);
+      this.pipes.children.iterate( (child) => {
+        const pipe  = child as Phaser.GameObjects.Sprite;
+        if (pipe.active && pipe.x + pipe.width < 0) {
           pipe.setActive(false);
-          /* pipe.setVisible(false);
-          pipe.body.stop(); */
         }
         return true;
       });
